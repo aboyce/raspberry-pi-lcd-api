@@ -1,0 +1,21 @@
+{
+  "name": "raspberry-pi-lcd-api",
+  "version": "0.1.0",
+  "description": "Express API for controlling an LCD connected to a Raspberry Pi",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "quick": "node index.js",
+    "serve": "pm2 start index.js --name raspberry-pi-lcd-api",
+    "watch": "pm2 start index.js --name raspberry-pi-lcd-api --watch",
+    "stop": "pm2 stop raspberry-pi-lcd-api",
+    "restart": "pm2 restart raspberry-pi-lcd-api",
+    "delete": "pm2 delete raspberry-pi-lcd-api",
+    "status": "pm2 status"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "raspberrypi-liquid-crystal": "^1.15.0"
+  }
+}
