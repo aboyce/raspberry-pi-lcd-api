@@ -1,5 +1,7 @@
 // Libraries
 import express from 'express'
+import bodyParser from 'body-parser'
+import cors from 'cors'
 import swaggerUi from 'swagger-ui-express'
 import swaggerJSDoc from 'swagger-jsdoc'
 
@@ -11,6 +13,10 @@ import swaggerOptions from './swagger'
 
 const app = express()
 const port = 3000
+
+app.use(bodyParser.json())
+
+app.use(cors())
 
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerJSDoc(swaggerOptions)))
 
