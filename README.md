@@ -1,4 +1,4 @@
-# raspberry-pi-lcd-api
+# Raspberry Pi - LCD API
 
 Express API for controlling an LCD connected to a Raspberry Pi
 
