@@ -11,7 +11,7 @@ export abstract class RequestError extends Error {
 
 export const errorMiddleware = (requestError: RequestError, req: Request, res: Response, next: NextFunction): void => {
   // log the error message
-  console.error('->', requestError.message)
+  console.error(requestError.message)
 
   // log the stack if it has been provided
   requestError.stack && console.error(requestError.stack)
