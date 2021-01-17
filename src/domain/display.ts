@@ -42,17 +42,22 @@ export default class Display {
 
   async clear(): Promise<void> {
     const lcd = await this.getInstance()
-    lcd.clear()
+    await lcd.clear()
+  }
+
+  async close(): Promise<void> {
+    const lcd = await this.getInstance()
+    await lcd.close()
   }
 
   async on(): Promise<void> {
     const lcd = await this.getInstance()
-    lcd.display()
+    await lcd.display()
   }
 
   async off(): Promise<void> {
     const lcd = await this.getInstance()
-    lcd.noDisplay()
+    await lcd.noDisplay()
   }
 
   async printLn(line = 0, content = ''): Promise<void> {

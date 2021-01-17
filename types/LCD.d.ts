@@ -14,6 +14,8 @@ declare module 'raspberrypi-liquid-crystal' {
 
     /** Initializes the interface to the LCD screen. Has to be called before any command. */
     async begin(): Promise<void>
+    /** Closes the interface to the LCD screen. */
+    async close(): Promise<void>
     /** Clears the LCD screen and positions the cursor in the upper-left corner. */
     async clear(): Promise<this>
     /** Positions the cursor in the upper-left of the LCD. */
