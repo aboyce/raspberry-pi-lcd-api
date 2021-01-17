@@ -20,7 +20,7 @@ export const errorMiddleware = (requestError: RequestError, req: Request, res: R
     message: requestError.message,
   })
 
-  // call next() to ensure database connections etc. are closed
+  // call next() to ensure any required cleanup occurs
   return next()
 }
 
