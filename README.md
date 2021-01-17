@@ -10,7 +10,7 @@ Available at `http:/[IP_ADDRESS]:3000/docs`
 
 Heavily dependant on [this](https://tutorials-raspberrypi.com/control-a-raspberry-pi-hd44780-lcd-display-via-i2c/) tutorial for the hardware setup.
 
-## Pins
+### Pins
 
 | Raspberry Pi        | 3.3V Level Converter | 5V Level Converter | I2C LCD Adapter |
 | ------------------- | -------------------- | ------------------ | --------------- |
@@ -28,12 +28,10 @@ Heavily dependant on [this](https://tutorials-raspberrypi.com/control-a-raspberr
 
 `sudo apt install python-smbus i2c-tools`
 
-#### Sofware Dependencies
+#### API Dependencies
 
-- NodeJS
+- NodeJS - [https://nodejs.org/en/](https://nodejs.org/en/)
 - PM2 - [https://pm2.io/](https://pm2.io/) - `npm install -g pm2`
-
-`sudo apt install python-smbus i2c-tools`
 
 #### Pi Configuration
 
@@ -49,7 +47,7 @@ Heavily dependant on [this](https://tutorials-raspberrypi.com/control-a-raspberr
 
 _Credit: https://tutorials-raspberrypi.com_
 
-## Start
+## Running
 
 #### `npm install`
 
