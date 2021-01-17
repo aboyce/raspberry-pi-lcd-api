@@ -1,8 +1,8 @@
 import express from 'express'
-import LCD from './lcd.js'
+import Display from './display'
 
-//const lcd = new LCD(1, 63, 16, 2)
-const lcd = new LCD(1, 63, 20, 4)
+//const lcd = new Display(1, 63, 16, 2)
+const lcd = new Display(1, 63, 20, 4)
 const app = express()
 const port = 3000
 
