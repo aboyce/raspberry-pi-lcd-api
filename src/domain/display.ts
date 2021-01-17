@@ -1,4 +1,14 @@
+// Libraries
 import LCD from 'raspberrypi-liquid-crystal'
+
+// Errors
+import { RequestError } from '../middleware/errorMiddleware'
+
+export class DisplayConnectionError extends RequestError {
+  constructor() {
+    super(503, 'Could not connect to the LCD display')
+  }
+}
 
 export default class Display {
   instance: LCD | null = null
@@ -21,16 +31,28 @@ export default class Display {
     return this.instance
   }
 
+  async isConnected(): Promise<boolean> {
+    try {
+      const lcd = await this.getInstance()
+      return lcd.began
+    } catch (error) {
+      throw new DisplayConnectionError()
+    }
+  }
+
   async clear(): Promise<void> {
-    ;(await this.getInstance()).clear()
+    const lcd = await this.getInstance()
+    lcd.clear()
   }
 
   async on(): Promise<void> {
-    ;(await this.getInstance()).display()
+    const lcd = await this.getInstance()
+    lcd.display()
   }
 
   async off(): Promise<void> {
-    ;(await this.getInstance()).noDisplay()
+    const lcd = await this.getInstance()
+    lcd.noDisplay()
   }
 
   async printLn(line = 0, content = ''): Promise<void> {
