@@ -10,6 +10,49 @@ Available at `http:/[IP_ADDRESS]:3000/docs`
 
 Heavily dependant on [this](https://tutorials-raspberrypi.com/control-a-raspberry-pi-hd44780-lcd-display-via-i2c/) tutorial for the hardware setup.
 
-Quick reference is:
+## Pins
 
-![Schematic Drawing](https://github.com/aboyce/raspberry-pi-lcd-api/docs/hd44780-i2c.png 'Schematic Drawing')
+| Raspberry Pi        | 3.3V Level Converter | 5V Level Converter | I2C LCD Adapter |
+| ------------------- | -------------------- | ------------------ | --------------- |
+| 3.3V (Pin 1)        | LV                   | -                  | -               |
+| 5V (Pin 2)          | -                    | HV                 | VCC             |
+| GND (Pin 6)         | GND                  | GND                | GND             |
+| GPIO2 / SDA (Pin 3) | TX1 (below)          | -                  | -               |
+| GPIO3 / SCL (Pin 5) | TX1 (above)          | -                  | -               |
+| -                   | -                    | TX0 (below)        | SDA             |
+| -                   | -                    | TX0 (above)        | SCL             |
+
+### Required Software
+
+#### I2C Dependencies
+
+`sudo apt install python-smbus i2c-tools`
+
+#### Sofware Dependencies
+
+- NodeJS
+- PM2 - [https://pm2.io/](https://pm2.io/) - `npm install -g pm2`
+
+`sudo apt install python-smbus i2c-tools`
+
+#### Pi Configuration
+
+`sudo raspi-config` and enable I2C
+
+#### Find the Address
+
+`sudo i2cdetect -y 1`
+
+### Schematic Drawing
+
+![Schematic Drawing](https://raw.githubusercontent.com/aboyce/raspberry-pi-lcd-api/main/docs/hd44780-i2c.png 'Schematic Drawing')
+
+_Credit: https://tutorials-raspberrypi.com_
+
+## Start
+
+#### `npm install`
+
+#### `npm run build`
+
+#### `npm run serve`
