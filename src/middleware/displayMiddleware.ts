@@ -2,7 +2,7 @@
 import { RequestHandler } from 'express'
 
 // Domain Models
-import Display from '../domain/display'
+import Display from '../domain/Display'
 
 //const lcd = new Display(1, 63, 16, 2)
 //const lcd = new Display(1, 63, 20, 4)
