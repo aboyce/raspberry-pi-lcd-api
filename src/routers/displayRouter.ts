@@ -2,7 +2,7 @@
 import express from 'express'
 
 // Utilities
-import Display from '../domain/display'
+import Display from '../domain/Display'
 
 const router = express.Router()
 
