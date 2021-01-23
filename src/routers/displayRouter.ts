@@ -10,6 +10,8 @@ const router = express.Router()
  * @swagger
  * /display/on:
  *  get:
+ *    tags:
+ *      - display
  *    summary: Turn on the LCD display
  */
 router.get('/on', (req, res, next) => {
@@ -23,6 +25,8 @@ router.get('/on', (req, res, next) => {
  * @swagger
  * /display/off:
  *  get:
+ *    tags:
+ *      - display
  *    summary: Turn off the LCD display
  */
 router.get('/off', (req, res, next) => {
@@ -36,6 +40,8 @@ router.get('/off', (req, res, next) => {
  * @swagger
  * /display/info:
  *  get:
+ *    tags:
+ *      - display
  *    summary: Get basic informaton about the connected LCD display
  *
  */
@@ -49,6 +55,8 @@ router.get('/info', (req, res, next) => {
  * @swagger
  * /display/clear:
  *  get:
+ *    tags:
+ *      - display
  *    summary: Clear the LCD display
  */
 router.get('/clear', (req, res, next) => {
@@ -62,6 +70,8 @@ router.get('/clear', (req, res, next) => {
  * @swagger
  * /display/reset:
  *  get:
+ *    tags:
+ *      - display
  *    summary: Reset the LCD display
  */
 router.get('/reset', (req, res, next) => {
@@ -75,6 +85,8 @@ router.get('/reset', (req, res, next) => {
  * @swagger
  * /display/home:
  *  get:
+ *    tags:
+ *      - display
  *    summary: Position the cursor to the top-left
  */
 router.get('/home', (req, res, next) => {
@@ -88,6 +100,8 @@ router.get('/home', (req, res, next) => {
  * @swagger
  * /display/cursor/block/show:
  *  get:
+ *    tags:
+ *      - display
  *    summary: Show the block cursor
  */
 router.get('/cursor/block/show', (req, res, next) => {
@@ -101,6 +115,8 @@ router.get('/cursor/block/show', (req, res, next) => {
  * @swagger
  * /display/cursor/block/hide:
  *  get:
+ *    tags:
+ *      - display
  *    summary: Hide the block cursor
  */
 router.get('/cursor/block/hide', (req, res, next) => {
@@ -114,6 +130,8 @@ router.get('/cursor/block/hide', (req, res, next) => {
  * @swagger
  * /display/cursor/line/show:
  *  get:
+ *    tags:
+ *      - display
  *    summary: Show the underline cursor
  */
 router.get('/cursor/line/show', (req, res, next) => {
@@ -127,6 +145,8 @@ router.get('/cursor/line/show', (req, res, next) => {
  * @swagger
  * /display/cursor/line/hide:
  *  get:
+ *    tags:
+ *      - display
  *    summary: Hide the underline cursor
  */
 router.get('/cursor/line/hide', (req, res, next) => {
@@ -140,6 +160,8 @@ router.get('/cursor/line/hide', (req, res, next) => {
  * @swagger
  * /display/cursor:
  *  get:
+ *    tags:
+ *      - display
  *    summary: Positions the cursor
  *    parameters:
  *      - in: query
@@ -167,6 +189,8 @@ router.get('/cursor', (req, res, next) => {
  * @swagger
  * /display/print:
  *  get:
+ *    tags:
+ *      - display
  *    summary: Print content to the LCD display
  */
 router.get('/print', (req, res, next) => {
@@ -180,6 +204,8 @@ router.get('/print', (req, res, next) => {
  * @swagger
  * /display/print/line:
  *  get:
+ *    tags:
+ *      - display
  *    summary: Print a line of content to the LCD display
  *    parameters:
  *      - in: query
