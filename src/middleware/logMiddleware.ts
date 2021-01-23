@@ -2,7 +2,10 @@
 import { RequestHandler } from 'express'
 
 export const logMiddleware: RequestHandler = (req, res, next): void => {
-  console.log(`${req.method} ${req.path} ${JSON.stringify(req.body) || '(no body provided)'}`)
+  const { method, path, query, body } = req
+  console.log(
+    `${method} ${path} ${JSON.stringify(query) || 'no query provided'} ${JSON.stringify(body) || '(no body provided)'}`,
+  )
   next()
 }
 
