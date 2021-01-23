@@ -8,6 +8,7 @@ import { displayConnectMiddleware, displayDisconnectMiddleware } from '../middle
 
 // Routers
 import displayRouter from './displayRouter'
+import npmRouter from './modules/npmRouter'
 
 const appRouter = express.Router()
 
@@ -17,8 +18,10 @@ appRouter.use(logMiddleware)
 // initialise the display
 appRouter.use(displayConnectMiddleware)
 
-//routes
+// routes
 appRouter.use('/display', displayRouter)
+// routes - modules
+appRouter.use('/module/npm', npmRouter)
 
 // close the connection to the display
 appRouter.use(displayDisconnectMiddleware)
