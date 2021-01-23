@@ -37,6 +37,10 @@ export default class Display extends DisplaySingleton {
     super(busNumber, address, columns, rows)
   }
 
+  hasExtraRows(): boolean {
+    return this.rows > 2
+  }
+
   testConnection(): boolean {
     try {
       const lcd = this.getInstance()
