@@ -20,13 +20,13 @@ class DisplaySingleton {
     protected readonly rows: number,
   ) {}
 
-  protected async getInstance(): Promise<LCD> {
+  protected getInstance(): LCD {
     if (this.instance === null) {
       const { busNumber, address, columns, rows } = this
       this.instance = new LCD(busNumber, address, columns, rows)
     }
     if (!this.instance.began) {
-      await this.instance.begin()
+      this.instance.beginSync()
     }
     return this.instance
   }
@@ -37,27 +37,27 @@ export default class Display extends DisplaySingleton {
     super(busNumber, address, columns, rows)
   }
 
-  async isConnected(): Promise<boolean> {
+  testConnection(): boolean {
     try {
-      const lcd = await this.getInstance()
+      const lcd = this.getInstance()
       return lcd.began
     } catch (error) {
       throw new DisplayConnectionError()
     }
   }
 
-  async on(): Promise<void> {
-    const lcd = await this.getInstance()
-    await lcd.display()
+  on(): void {
+    const lcd = this.getInstance()
+    lcd.displaySync()
   }
 
-  async off(): Promise<void> {
-    const lcd = await this.getInstance()
-    await lcd.noDisplay()
+  off(): void {
+    const lcd = this.getInstance()
+    lcd.noDisplaySync()
   }
 
-  async getInfo(): Promise<{ busNumber: number; address: number; cols: number; rows: number; began: boolean }> {
-    const { busNumber, address, cols, rows, began } = await this.getInstance()
+  getInfo(): { busNumber: number; address: number; cols: number; rows: number; began: boolean } {
+    const { busNumber, address, cols, rows, began } = this.getInstance()
     return {
       busNumber,
       address,
@@ -67,53 +67,59 @@ export default class Display extends DisplaySingleton {
     }
   }
 
-  async clear(): Promise<void> {
-    const lcd = await this.getInstance()
-    await lcd.clear()
+  reset(): void {
+    const lcd = this.getInstance()
+    lcd.clearSync()
+    lcd.homeSync()
   }
 
-  async home(): Promise<void> {
-    const lcd = await this.getInstance()
-    await lcd.home()
+  clear(): void {
+    const lcd = this.getInstance()
+    lcd.clearSync()
   }
 
-  async showBlockCursor(): Promise<void> {
-    const lcd = await this.getInstance()
-    await lcd.cursor()
+  home(): void {
+    const lcd = this.getInstance()
+    lcd.homeSync()
   }
 
-  async hideBlockCursor(): Promise<void> {
-    const lcd = await this.getInstance()
-    await lcd.noCursor()
+  showBlockCursor(): void {
+    const lcd = this.getInstance()
+    lcd.cursorSync()
   }
 
-  async showUnderlineCursor(): Promise<void> {
-    const lcd = await this.getInstance()
-    await lcd.blink()
+  hideBlockCursor(): void {
+    const lcd = this.getInstance()
+    lcd.noCursorSync()
   }
 
-  async hideUnderlineCursor(): Promise<void> {
-    const lcd = await this.getInstance()
-    await lcd.noBlink()
+  showUnderlineCursor(): void {
+    const lcd = this.getInstance()
+    lcd.blinkSync()
   }
 
-  async setCursor(column: number, row: number): Promise<void> {
-    const lcd = await this.getInstance()
-    await lcd.setCursor(column, row)
+  hideUnderlineCursor(): void {
+    const lcd = this.getInstance()
+    lcd.noBlinkSync()
   }
 
-  async print(content = ''): Promise<void> {
-    const lcd = await this.getInstance()
-    await lcd.print(content)
+  setCursor(column: number, row: number): void {
+    const lcd = this.getInstance()
+    lcd.setCursorSync(column, row)
   }
 
-  async printLn(line = 0, content = ''): Promise<void> {
-    const lcd = await this.getInstance()
-    await lcd.printLine(line, content)
+  print(content = ''): void {
+    const lcd = this.getInstance()
+    lcd.printSync(content)
   }
 
-  async close(): Promise<void> {
-    const lcd = await this.getInstance()
-    await lcd.close()
+  printLine(line = 0, content = ''): void {
+    const lcd = this.getInstance()
+    lcd.printLineSync(line, content)
+  }
+
+  close(): void {
+    const lcd = this.getInstance()
+    lcd.closeSync()
   }
 }
