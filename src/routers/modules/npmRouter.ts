@@ -23,20 +23,24 @@ const router = express.Router()
  *        description: The name of the package
  */
 router.get('/downloads/weekly', async (req, res, next) => {
-  const npmPackage = new NpmPackage(req.query.name as string)
-  const result = await npmPackage.getLastWeekDownloads()
-  const lcd: Display = res.locals.display
+  try {
+    const npmPackage = new NpmPackage(req.query.name as string)
+    const result = await npmPackage.getLastWeekDownloads()
+    res.json(result)
 
-  // print out to the display
-  lcd.reset()
-  lcd.printLine(0, npmPackage.name)
-  lcd.printLine(1, `Weekly: ${result.downloads}`)
-  if (lcd.hasExtraRows()) {
-    lcd.printLine(2, `Start: ${result.start}`)
-    lcd.printLine(3, `End: ${result.end}`)
+    // print out to the display
+    const lcd: Display = res.locals.display
+    lcd.reset()
+    lcd.printLine(0, npmPackage.name)
+    lcd.printLine(1, `Weekly: ${result.downloads}`)
+    if (lcd.hasExtraRows()) {
+      lcd.printLine(2, `Start: ${result.start}`)
+      lcd.printLine(3, `End: ${result.end}`)
+    }
+  } catch (error) {
+    next(error)
   }
 
-  res.json(result)
   next()
 })
 
