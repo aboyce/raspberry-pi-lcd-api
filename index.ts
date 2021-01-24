@@ -20,6 +20,19 @@ app.use(cors())
 
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerJSDoc(swaggerOptions)))
 
+/**
+ * @swagger
+ * /alive:
+ *  get:
+ *    tags:
+ *      - general
+ *    summary: Check the API is running
+ */
+app.get('/alive', async (req, res, next) => {
+  res.send(true)
+  next()
+})
+
 app.use(appRouter)
 
 app.listen(port, async () => {
