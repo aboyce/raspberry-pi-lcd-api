@@ -25,22 +25,30 @@ interface CountResult {
   end: string
 }
 
+async function getCountResult(url: string): Promise<CountResult> {
+  try {
+    const { data } = await api.get(url)
+    return {
+      downloads: data.downloads,
+      start: data.start,
+      end: data.end,
+    }
+  } catch (error) {
+    if (error.response?.status === 404) {
+      throw new PackageNotFound()
+    }
+    throw error
+  }
+}
+
 export default class NpmPackage {
   constructor(readonly name: string) {}
 
+  async getLastDayDownloads(): Promise<CountResult> {
+    return getCountResult(`point/last-day/${this.name}`)
+  }
+
   async getLastWeekDownloads(): Promise<CountResult> {
-    try {
-      const { data } = await api.get(`point/last-week/${this.name}`)
-      return {
-        downloads: data.downloads,
-        start: data.start,
-        end: data.end,
-      }
-    } catch (error) {
-      if (error.response?.status === 404) {
-        throw new PackageNotFound()
-      }
-      throw error
-    }
+    return getCountResult(`point/last-week/${this.name}`)
   }
 }
