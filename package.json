@@ -1,6 +1,6 @@
 {
   "name": "raspberry-pi-lcd-api",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Express API for controlling an LCD connected to a Raspberry Pi",
   "main": "dist/index.js",
   "scripts": {
