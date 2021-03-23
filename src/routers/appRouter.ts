@@ -9,6 +9,7 @@ import { displayConnectMiddleware, displayDisconnectMiddleware } from '../middle
 // Routers
 import displayRouter from './displayRouter'
 import npmRouter from './modules/npmRouter'
+import cryptoRouter from './modules/cryptoRouter'
 
 const appRouter = express.Router()
 
@@ -22,6 +23,7 @@ appRouter.use(displayConnectMiddleware)
 appRouter.use('/display', displayRouter)
 // routes - modules
 appRouter.use('/module/npm', npmRouter)
+appRouter.use('/module/crypto', cryptoRouter)
 
 // close the connection to the display
 appRouter.use(displayDisconnectMiddleware)
