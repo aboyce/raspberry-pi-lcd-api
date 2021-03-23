@@ -12,11 +12,6 @@ const swaggerOptions: Options = {
       version: packageInformation.version,
       description: packageInformation.description,
     },
-    servers: [
-      {
-        url: 'http://localhost:3000/',
-      },
-    ],
   },
   apis: ['./index.ts', './src/routers/*.ts', './src/routers/modules/*.ts'],
 }
