@@ -16,7 +16,8 @@ class CryptoNotFound extends RequestError {
 const PRICE_GBP = 2791
 
 function formatPrice(price: number): string {
-  return parseFloat(price.toFixed(2)).toLocaleString()
+  const decimalPlaces = price < 1 ? 4 : 2
+  return parseFloat(price.toFixed(decimalPlaces)).toLocaleString()
 }
 
 function formatPercent(percent: number): string {
